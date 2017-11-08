@@ -16,4 +16,36 @@ $(document).ready(function(){
       }
     });
 
+  function addEventToList(event) {
+    event.preventDefault();
+
+    var eventTemplate = $("#event-template").html();
+    var newEvent = $(eventTemplate).clone();
+
+    var eventType = event.type;
+    var eventDate = new Date(event.timeStamp);
+    var hours = eventDate.getHours();
+    var minutes = eventDate.getMinutes();
+    var seconds = eventDate.getSeconds();
+
+    if(minutes < 10) {
+      minutes = "0" + minutes;
+    }
+
+    if(seconds < 10) {
+      seconds = "0" + seconds;
+    }
+
+    $(newEvent).find(".event-name").html(eventType);
+    $(newEvent).find(".event-time").html(hours + ":" + minutes + ":" + seconds);
+
+    $(".river-content").append(newEvent);
+  }
+
+  $("#click-event").on("click", function(event){
+    event.preventDefault();
+    addEventToList(event);
+  });
+
+
 });
