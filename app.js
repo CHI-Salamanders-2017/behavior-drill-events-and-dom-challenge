@@ -47,5 +47,9 @@ $(document).ready(function(){
     addEventToList(event);
   });
 
+  $("#mouseover").mouseover(function(event){
+    event.preventDefault();
+    addEventToList(event);
+  });
 
 });
